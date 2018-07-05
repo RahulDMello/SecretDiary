@@ -58,11 +58,11 @@ namespace SecretDiary
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "48159110479-5k4o6t4o08uvvtjnieet9r1gl7gps42u.apps.googleusercontent.com",
+                ClientSecret = "pxWDqSxbiVUDQJruQuRuRlgi"
+            });
         }
     }
 }

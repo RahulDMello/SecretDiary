@@ -9,6 +9,9 @@ namespace SecretDiary.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public virtual System.Collections.Generic.List<DiaryEntry> DiaryEntries { get; set; }
+        public virtual StickyNote Note { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -20,6 +23,10 @@ namespace SecretDiary.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        public DbSet<DiaryEntry> Entries { get; set; }
+        public DbSet<StickyNote> Note { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

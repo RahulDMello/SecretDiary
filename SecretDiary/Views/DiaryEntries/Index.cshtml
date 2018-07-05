@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SecretDiary.Models.DiaryEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entry)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entry)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EntryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EntryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EntryID })
+        </td>
+    </tr>
+}
+
+</table>
