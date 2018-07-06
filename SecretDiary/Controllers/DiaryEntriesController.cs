@@ -90,6 +90,7 @@ namespace SecretDiary.Controllers
         {
             if (ModelState.IsValid)
             {
+                diaryEntry.UserID = User.Identity.GetUserId();
                 db.Entry(diaryEntry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

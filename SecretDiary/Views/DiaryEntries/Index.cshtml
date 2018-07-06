@@ -20,13 +20,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.EntryDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Entry)
+            @{
+                var shortEntry = item.Entry;
+                if (shortEntry.Length > 20)
+                {
+                    shortEntry = shortEntry.Substring(0, 27);
+                    shortEntry += "...";
+                }
+                @Html.DisplayFor(modelItem => shortEntry);
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EntryID }) |

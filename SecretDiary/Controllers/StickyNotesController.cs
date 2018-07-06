@@ -11,6 +11,7 @@ using SecretDiary.Models;
 
 namespace SecretDiary.Controllers
 {
+    [Authorize]
     public class StickyNotesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
