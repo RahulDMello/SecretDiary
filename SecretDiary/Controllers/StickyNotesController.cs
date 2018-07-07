@@ -46,7 +46,10 @@ namespace SecretDiary.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(stickyNote).State = EntityState.Modified;
+                var userid = User.Identity.GetUserId();
+                var tempStickyNote = db.Note.FirstOrDefault(n => n.UserID == userid);
+                tempStickyNote.Entry = stickyNote.Entry;
+                db.Entry(tempStickyNote).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Edit");
             }

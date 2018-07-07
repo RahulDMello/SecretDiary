@@ -73,10 +73,12 @@ namespace SecretDiary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiaryEntry diaryEntry = db.Entries.Find(id);
+            // DiaryEntry diaryEntry = db.Entries.Find(id);
+            var userid = User.Identity.GetUserId();
+            DiaryEntry diaryEntry = db.Entries.Where(e => e.EntryID == id && e.UserID == userid).FirstOrDefault();
             if (diaryEntry == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(diaryEntry);
         }
@@ -105,10 +107,12 @@ namespace SecretDiary.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiaryEntry diaryEntry = db.Entries.Find(id);
+            var userid = User.Identity.GetUserId();
+            DiaryEntry diaryEntry = db.Entries.FirstOrDefault(e => e.EntryID == id && e.UserID == userid);
             if (diaryEntry == null)
             {
-                return HttpNotFound();
+                return View("Error");
+                // return HttpNotFound();
             }
             return View(diaryEntry);
         }
